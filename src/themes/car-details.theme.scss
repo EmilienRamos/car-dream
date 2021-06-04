@@ -1,0 +1,63 @@
+@import "~@angular/material/theming";
+
+@mixin cars-details-theme($theme) {
+  $color: mat-get-color-config($theme);
+  $typography: mat-get-typography-config($theme);
+
+  @if $color != null {
+    @include cars-details-color($color);
+  }
+  @if $typography != null {
+    @include cars-details-typography($typography);
+  }
+}
+
+@mixin cars-details-color($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+  $background: map-get($config, background);
+  $is-dark: map-get($config, is-dark);
+
+  eap-details {
+    background-color: mat-color($background, background);
+
+    .content {
+      h1 {
+        &::after {
+          background: mat-color($foreground, text);
+        }
+      }
+    }
+
+    .close-button {
+      mat-icon {
+        color: mat-color($foreground, text, .4);
+      }
+    }
+  }
+}
+
+
+  @mixin cars-details-typography($config-or-theme) {
+  $config: mat-get-typography-config($config-or-theme);
+
+  eap-details {
+    h1.title {
+      font-size: mat-font-size($config, display-1);
+      font-weight: mat-font-weight($config, display-2);
+    }
+
+    h4.sub-title {
+      font-size: mat-font-size($config, title);
+      font-weight: mat-font-weight($config, display-1);
+    }
+
+    .price {
+      font-size: mat-font-size($config, display-1);
+      font-weight: mat-font-weight($config, display-2);
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@import "~@angular/material/theming";
+
+@mixin cars-theme($theme) {
+  $color: mat-get-color-config($theme);
+  $typography: mat-get-typography-config($theme);
+
+  @if $color != null {
+    @include cars-color($color);
+  }
+  @if $typography != null {
+    @include cars-typography($typography);
+  }
+}
+
+@mixin cars-color($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+  $background: map-get($config, background);
+  $is-dark: map-get($config, is-dark);
+
+  eap-cars-toolbar {
+    mat-toolbar {
+      @if($is-dark) {
+        border-bottom-color: mat-color($background, card);
+      } @else {
+        border-bottom-color: mat-color($background, status-bar);
+      }
+    }
+
+    .search-zone {
+      @if($is-dark) {
+        border-left-color: mat-color($background, card);
+        border-right-color: mat-color($background, card);
+      } @else {
+        border-left-color: mat-color($background, status-bar);
+        border-right-color: mat-color($background, status-bar);
+      }
+
+      input {
+        color: mat-color($foreground, text);
+      }
+    }
+
+    .add-car-container {
+      @if($is-dark) {
+        border-right-color: mat-color($background, card);
+      } @else {
+        border-right-color: mat-color($background, status-bar);
+      }
+    }
+  }
+
+  eap-cars {
+    .mat-drawer {
+      background-color: mat-color($background, background);
+    }
+  }
+
+  eap-cars-filters {
+    mat-expansion-panel {
+      &.mat-expansion-panel {
+        background-color: mat-color($background, background);
+      }
+
+      @if($is-dark) {
+        border-bottom-color: mat-color($background, card);
+      } @else {
+        border-bottom-color: mat-color($background, status-bar);
+      }
+    }
+  }
+
+}
+
+
+  @mixin cars-typography($config-or-theme) {
+  $config: mat-get-typography-config($config-or-theme);
+
+  eap-cars-toolbar {
+    mat-toolbar {
+      .logo {
+        h1 {
+          font-size: mat-font-size($config, display-2);
+          font-weight: mat-font-weight($config, display-2);
+        }
+      }
+
+      input {
+        font-family: mat-font-family($config);
+        font-size: mat-font-size($config, title);
+        font-weight: mat-font-weight($config, headline);
+      }
+    }
+  }
+
+  eap-cars-filters {
+    mat-accordion {
+      mat-expansion-panel-header {
+        mat-panel-title {
+          font-size: mat-font-size($config, subheading-2);
+          font-weight: mat-font-weight($config, headline);
+        }
+      }
+    }
+  }
+
+  eap-cars {
+    mat-card {
+      h2.title-car {
+        font-size: mat-font-size($config, title);
+        font-weight: mat-font-weight($config, headline);
+      }
+
+      .actions {
+        h2 {
+          font-size: mat-font-size($config, title);
+          font-weight: mat-font-weight($config, headline);
+          margin: 0;
+        }
+      }
+    }
+  }
+}

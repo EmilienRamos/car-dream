@@ -1,0 +1,123 @@
+<div class="container" fxLayout="column" fxLayout.gt-sm="row">
+  <div class="images" fxFlex="40">
+    <drag-scroll
+      [drag-scroll-y-disabled]="true"
+      [snap-duration]="225"
+      *ngIf="car.images?.length > 0; else noImage"
+    >
+      <ng-container *ngFor="let image of car.images">
+        <div
+          class="image"
+          drag-scroll-item
+          *ngIf="image"
+          [style.backgroundImage]="image | sanitizeBackground"
+        ></div>
+      </ng-container>
+    </drag-scroll>
+    <ng-template #noImage>
+      <div
+        class="default-image"
+        [style.backgroundImage]="'url(../../assets/img/default-image.png)'"
+        alt="Default Image"
+      ></div>
+    </ng-template>
+  </div>
+  <div class="content" fxFlex fxLayout="column" ngClass.lt-md="small">
+    <h1
+      class="title"
+      fxLayout
+      fxLayoutAlign="flex-start center"
+      fxLayoutGap="16px"
+    >
+      <span>{{ car.brand }} {{ car.name }}</span>
+      <button
+        mat-stroked-button
+        color="primary"
+        class="small bold"
+        (click)="updateCar()"
+      >
+        Modifier
+      </button>
+      <span fxFlex></span>
+      <a mat-icon-button [routerLink]="['/cars']" class="close-button">
+        <mat-icon>close</mat-icon>
+      </a>
+    </h1>
+    <div fxFlex fxLayout="column" class="details" ngClass.lt-md="small">
+      <div class="car-details" fxFlex fxLayout fxLayoutGap="16px">
+        <mat-list fxFlex fxFlex.gt-sm="300px">
+          <mat-list-item fxLayout fxLayoutAlign="flex-start center">
+            <mat-icon mat-list-icon>bolt</mat-icon>
+            650 HP
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>pin</mat-icon>
+            {{ car.immat }}
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>today</mat-icon>
+            {{ car.buy_date | date: "dd MMM, YYYY" }}
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>opacity</mat-icon>
+            {{ car.color }}
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>loupe</mat-icon>
+            {{ car.state }}
+          </mat-list-item>
+          <mat-list-item fxLayout fxLayoutAlign="flex-start center">
+            <mat-icon mat-list-icon>directions_car</mat-icon>
+            {{ car.miles }} km
+          </mat-list-item>
+        </mat-list>
+        <div class="description" fxFlex>
+          <h4 class="sub-title">Description :</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+            maxime earum expedita suscipit voluptatibus ex aut repudiandae saepe
+            rerum molestiae quaerat commodi quo deleniti molestias, sunt quidem
+            officiis neque delectus ? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Nobis obcaecati, quidem necessitatibus aliquid
+            soluta vero ducimus in aperiam eos minus dolores laudantium debitis
+            fugiat pariatur, suscipit illum reprehenderit architecto possimus!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+            maxime earum expedita suscipit voluptatibus ex aut repudiandae saepe
+            rerum molestiae quaerat commodi quo deleniti molestias, sunt quidem
+            officiis neque delectus ? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Nobis obcaecati, quidem necessitatibus aliquid
+            soluta vero ducimus in aperiam eos minus dolores laudantium debitis
+            fugiat pariatur, suscipit illum reprehenderit architecto possimus!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+            maxime earum expedita suscipit voluptatibus ex aut repudiandae saepe
+            rerum molestiae quaerat commodi quo deleniti molestias, sunt quidem
+            officiis neque delectus ? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Nobis obcaecati, quidem necessitatibus aliquid
+            soluta vero ducimus in aperiam eos minus dolores laudantium debitis
+            fugiat pariatur, suscipit illum reprehenderit architecto possimus!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit;
+          </p>
+        </div>
+      </div>
+      <div
+        class="actions"
+        fxLayout
+        fxLayoutAlign="center center"
+        fxLayoutGap="16px"
+      >
+        <span fxFlex class="price">{{ car.price | currency: "EUR" }}</span>
+        <button
+          class="small bold"
+          mat-stroked-button
+          color="primary"
+          (click)="deleteCar()"
+        >
+          Supprimer
+        </button>
+        <button mat-flat-button color="primary" class="bold">
+          Réserver un éssai
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

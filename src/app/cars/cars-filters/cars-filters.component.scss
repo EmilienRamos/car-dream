@@ -1,0 +1,35 @@
+
+:host {
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+mat-expansion-panel {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  box-shadow: none !important;
+}
+
+mat-expansion-panel-header {
+  height: 75px;
+
+  mat-panel-title {
+    mat-icon {
+      margin-right: 16px;
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  padding: 16px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  .reset-button {
+    min-width: 38px;
+    padding: 0;
+  }
+}

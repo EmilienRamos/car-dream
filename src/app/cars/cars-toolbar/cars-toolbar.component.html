@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <div
+    class="logo"
+    fxFlex.lt-md="55px"
+    fxFlex="280px"
+    fxLayout
+    fxLayoutGap="8px"
+    fxLayoutAlign="flex-start center"
+  >
+    <mat-icon svgIcon="wheel" color="primary"></mat-icon>
+    <h1 fxHide.lt-md>CAR DREAM</h1>
+  </div>
+  <div
+    class="search-zone"
+    fxFlex
+    fxLayoutAlign="center center"
+    fxLayoutGap="16px"
+  >
+    <label for="search">
+      <mat-icon>search</mat-icon>
+    </label>
+    <input
+      type="text"
+      id="search"
+      fxFlex
+      [formControl]="searchInputControl"
+      placeholder="Recherche : Nissan GT-R, Bugatti Chiron, ..."
+    />
+    <mat-icon
+      class="resetControl"
+      color="primary"
+      (click)="searchInputControl.setValue('')"
+      >close</mat-icon
+    >
+  </div>
+  <div class="add-car-container" fxFlex="175px" fxLayoutAlign="center center">
+    <button mat-button color="primary" class="bold light-button" (click)="addCar()">
+      <mat-icon>add</mat-icon>
+      <span>New car</span>
+    </button>
+  </div>
+  <eap-dark-mode fxFlex="5" fxFlex.lt-md="55px" fxLayoutAlign="center center"></eap-dark-mode>
+</mat-toolbar>

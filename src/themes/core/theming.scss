@@ -1,0 +1,55 @@
+@import "palette";
+
+@function ep-light-theme(
+  $primary,
+  $accent: null,
+  $warn: mat-palette($mat-red),
+  $success: mat-palette($mat-teal)
+) {
+  $theme: mat-light-theme($primary, $accent, $warn);
+  $color: map_get($theme, "color");
+
+  @return map_merge(
+    $theme,
+    (
+      background: $ep-light-theme-background,
+      foreground: $ep-light-theme-foreground,
+      success: $success,
+      color:
+        map_merge(
+          $color,
+          (
+            background: $ep-light-theme-background,
+            foreground: $ep-light-theme-foreground,
+          )
+        ),
+    )
+  );
+}
+
+@function ep-dark-theme(
+  $primary,
+  $accent: null,
+  $warn: mat-palette($mat-red),
+  $success: mat-palette($mat-light-green, 700)
+) {
+  $theme: mat-dark-theme($primary, $accent, $warn);
+  $color: map_get($theme, "color");
+
+  @return map_merge(
+    $theme,
+    (
+      background: $ep-dark-theme-background,
+      foreground: $ep-dark-theme-foreground,
+      success: $success,
+      color:
+        map_merge(
+          $color,
+          (
+            background: $ep-dark-theme-background,
+            foreground: $ep-dark-theme-foreground,
+          )
+        ),
+    )
+  );
+}

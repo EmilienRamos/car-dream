@@ -1,1 +1,174 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+
+@import "themes/core/palette";
+@import "themes/core/theming";
+@import "themes/car.theme";
+@import "themes/car-details.theme";
+
+$ep-typography: mat-typography-config(
+  $font-family: 'Source Sans Pro, Quicksand, Work Sans, sans-serif',
+  $display-1: mat-typography-level(34px, 40px, 700),
+  $display-2: mat-typography-level(28px, 40px, 900),
+  $headline: mat-typography-level(24px, 32px, 600),
+  $title: mat-typography-level(19px, 32px, 500),
+  $subheading-2: mat-typography-level(16px, 28px, 500),
+  $subheading-1: mat-typography-level(15px, 24px, 500),
+  $body-1: mat-typography-level(14px, 24px, 500),
+  $body-2: mat-typography-level(14px, 24px, 600),
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core($ep-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ep-primary: mat-palette($ep-primary-light, 400, 300, 600);
+$ep-accent: mat-palette($ep-accent-light, 400);
+
+// The warn palette is optional (defaults to red).
+$ep-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ep-theme: ep-light-theme(
+  (
+    success: $light-green,
+    color: (
+      primary: $ep-primary,
+      accent: $ep-accent,
+      warn:  $ep-warn,
+    ),
+    typography: $ep-typography,
+  )
+);
+
+$ep-dark-primary: mat-palette($ep-primary-dark, 200, 100, 900);
+$ep-dark-accent: mat-palette($ep-accent-green-dark, 700);
+$ep-dark-theme: ep-dark-theme(
+  (
+    success: $dark-green,
+    color: (
+      primary: $ep-dark-primary,
+      accent: $ep-dark-accent,
+      warn: mat-palette($mat-deep-orange),
+    ),
+    typography: $ep-typography,
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ep-theme);
+
+@include cars-theme($ep-theme);
+@include cars-typography($ep-theme);
+
+@include cars-details-theme($ep-theme);
+@include cars-details-typography($ep-theme);
+
+.dark {
+  @include angular-material-color($ep-dark-theme);
+
+  @include cars-theme($ep-dark-theme);
+  @include cars-typography($ep-dark-theme);
+
+  @include cars-details-theme($ep-dark-theme);
+  @include cars-details-typography($ep-dark-theme);
+
+  $background: map-get($ep-dark-theme, background);
+  $foreground: map-get($ep-dark-theme, foreground);
+  $primary: map-get($ep-dark-theme, primary);
+  $accent: map-get($ep-dark-theme, accent);
+  $warn: map-get($ep-dark-theme, warn);
+  $success: map-get($ep-dark-theme, success);
+
+  ::-webkit-scrollbar-thumb {
+    background-color: mat-color($background, app-bar);
+  }
+
+  ::-webkit-scrollbar {
+    background-color: mat-color($background, hover);
+  }
+
+  eap-root {
+    footer {
+      border-top: solid 1px mat-color($background, card);
+    }
+  }
+
+  .light-button {
+    background-color: mat-color($primary, 300, .1);
+  }
+}
+
 /* You can add global styles to this file, and also import other style files */
+
+$background: map-get($ep-theme, background);
+$foreground: map-get($ep-theme, foreground);
+$primary: map-get($ep-theme, primary);
+$accent: map-get($ep-theme, accent);
+$warn: map-get($ep-theme, warn);
+$success: map-get($ep-theme, success);
+$config: mat-get-typography-config($ep-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Sans Source Pro';
+  background-color: mat-color($background, app-bar);
+}
+
+eap-root {
+  height: 100%;
+
+  footer {
+    border-top: solid 1px mat-color($background, status-bar);
+    font-weight: mat-font-weight($config, headline);
+  }
+}
+
+.mat-app-background {
+  transition: all .2s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background-color: mat-color($background, tooltip);
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+  display: none;
+}
+
+.bold {
+  font-weight: mat-font-weight($config, headline);
+}
+
+.light-button {
+  background-color: mat-color($primary, 50);
+}

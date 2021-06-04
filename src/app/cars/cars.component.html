@@ -1,0 +1,118 @@
+<div class="container-content" fxFlex fxLayout="column">
+  <eap-cars-toolbar></eap-cars-toolbar>
+  <mat-drawer-container class="container">
+    <mat-drawer #drawer class="sidenav" mode="side" opened>
+      <eap-cars-filters></eap-cars-filters>
+    </mat-drawer>
+
+    <div class="sidenav-content" fxFlex fxLayout="column">
+      <mat-toolbar
+        fxLayout
+        fxLayoutAlign="flex-start center"
+        fxLayoutGap="16px"
+      >
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-chip-list
+          fxLayout
+          fxLayoutAlign="flex-start center"
+          fxLayoutGap="16px"
+        >
+          <mat-chip
+            >Vous avez créer {{ createdCars$ | async }} véhicules</mat-chip
+          >
+          <mat-chip *ngIf="oldestCar"
+            >Plus ancien véhicule : {{ oldestCar.brand }} {{ oldestCar.name }} -
+            {{ oldestCar.buy_date | date: "dd MMM, YYYY" }}</mat-chip
+          >
+          <mat-chip
+            *ngIf="weather$ | async as weather"
+            fxLayout
+            fxLayoutAlign="center center"
+            fxLayoutGap="8px"
+          >
+            <mat-icon svgIcon="sun"></mat-icon>
+            <span>
+              {{ weather.name }} - {{ weather.main.temp }}°C -
+              {{ weather.weather[0].description }}
+            </span>
+          </mat-chip>
+        </mat-chip-list>
+      </mat-toolbar>
+      <div class="content" fxFlex fxLayout="row wrap" fxLayoutGap="24px grid">
+        <div class="car-container" *ngFor="let car of cars$ | async">
+          <mat-card class="car-wrapper">
+            <header>
+              <span class="mat-caption">Lundi 06 Juin</span>
+              <h2 class="title-car">{{ car.brand }} {{ car.name }}</h2>
+              <button
+                mat-button
+                class="light-button"
+                color="primary"
+                (click)="deleteCar(car.id)"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </header>
+            <drag-scroll
+              [drag-scroll-y-disabled]="true"
+              [snap-duration]="225"
+              *ngIf="car.images?.length > 0; else noImage"
+            >
+              <ng-container *ngFor="let image of car.images">
+                <div
+                  class="image"
+                  drag-scroll-item
+                  *ngIf="image"
+                  [style.backgroundImage]="image | sanitizeBackground"
+                ></div>
+              </ng-container>
+            </drag-scroll>
+            <ng-template #noImage>
+              <div
+                class="default-image"
+                [style.backgroundImage]="'url(../../assets/img/default-image.png)'"
+                alt="Default Image"
+              ></div>
+            </ng-template>
+            <div class="meta" fxLayout fxLayoutAlign="center center">
+              <div fxFlex>
+                <span>État: {{ car.state }}</span>
+              </div>
+              <div fxFlex>
+                <span>Couleur: {{ car.color }}</span>
+              </div>
+            </div>
+            <div class="meta" fxLayout fxLayoutAlign="center center">
+              <div fxFlex>
+                <span>{{ car.miles }}Km</span>
+              </div>
+              <div fxFlex>
+                <span
+                  >Date d'achat: {{ car.buy_date | date: "dd MMM YYYY" }}</span
+                >
+              </div>
+            </div>
+            <div class="actions" fxLayout fxLayoutAlign="center center">
+              <h2 fxFlex fxFlex.gt-md="50">
+                {{ car.price | currency: "EUR" }}
+              </h2>
+              <a
+                mat-flat-button
+                color="primary"
+                fxFlex
+                fxFlex.gt-md="50"
+                class="bold"
+                [routerLink]="[car.id]"
+              >
+                Détails
+              </a>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-container>
+  <router-outlet></router-outlet>
+</div>
