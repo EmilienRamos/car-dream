@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { merge, Observable } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { merge, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, startWith, switchMap, tap } from 'rxjs/operators';
 import { CommonService } from '../core/common.service';
 import { Car } from '../core/models/Car';
@@ -11,13 +11,16 @@ import { CarsService } from './cars.service';
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.scss'],
 })
-export class CarsComponent implements AfterViewInit {
+export class CarsComponent implements AfterViewInit, OnDestroy {
 
   cars$: Observable<Car[]>;
   createdCars$: Observable<number>;
+
   weather$ = this.commons.getWeather('Paris', 'fr');
 
   oldestCar: Car;
+
+  destroy$ = new Subject<boolean>();
 
   @ViewChild(CarsToolbarComponent) carToolbarComponent: CarsToolbarComponent;
 
@@ -46,6 +49,11 @@ export class CarsComponent implements AfterViewInit {
 
   deleteCar(id: string): void {
     this.carService.deleteCar(id).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   private getOldestCar(cars: Car[]): Car {
