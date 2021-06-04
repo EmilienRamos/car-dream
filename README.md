@@ -1,4 +1,4 @@
-# EasyPartner
+# Car Dream
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
 
@@ -6,6 +6,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 **Please note that for this test, the Strict Mode from Angular 12 has been disabled.**
 
 ---
+
+## Informations sur le code
+
+Quelques lignes en français pour expliquer plus clairement et en détail ce que vous trouverez dans ce projet :
+
+- La contrainte `NgRX` n'a pas été respectée : Effectivement, cette librairie n'est, à mon sens, pas utile dans la mesure où tout (ou presque), peut-être gérer grâce à **RxJS**. Un débat là dessus serait interessant !
+
+- Pour gérer les Flexbox, je me suis servis de [FlexLayout](https://github.com/angular/flex-layout). Ce module permet, via des directives, de gérer la disposition des blocs directement depuis le HTML, allégeant ainsi les SCSS.
+
+- Les thèmes (Dark & White), ainsi que toute la colorimétrie à été mit en place grâce à `Angular Material`.
+
 
 ## Installing dependencies
 
