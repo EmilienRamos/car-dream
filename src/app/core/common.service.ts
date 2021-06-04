@@ -30,7 +30,7 @@ export class CommonService {
       { label: 'rouge' },
       { label: 'bleu' },
       { label: 'blanche' },
-      { label: 'noire' },
+      { label: 'jaune racing' },
       { label: 'gris' },
     ]);
   }
