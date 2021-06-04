@@ -26,6 +26,7 @@ En revanche, les filtres sur la gauche n'ont pas été implémenté. Ceci dit, l
 
 ---
 #### Ce projet a été réalisé en 8 heures.
+Le design m'a prit environ 70% du temps.
 
 ---
 
