@@ -1,6 +1,8 @@
 <div class="container" fxLayout="column">
   <h1 class="mat-title">
-    <span fxFlex *ngIf="!!car?.id else newCartitle">{{ car.brand }} {{ car.name }}</span>
+    <span fxFlex *ngIf="!!car?.id; else newCartitle"
+      >{{ car.brand }} {{ car.name }}</span
+    >
     <ng-template #newCartitle>
       <span fxFlex>New car</span>
     </ng-template>
@@ -21,7 +23,9 @@
               {{ brand.label }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner une marque.</mat-error>
+          <mat-error *ngIf="form.hasError('required', 'brand')"
+            >Veuillez renseigner une marque.</mat-error
+          >
         </mat-form-field>
         <mat-form-field fxFlex="48">
           <mat-label>Model</mat-label>
@@ -30,33 +34,39 @@
               {{ model }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner un modèle.</mat-error>
+          <mat-error *ngIf="form.hasError('required', 'brand')"
+            >Veuillez renseigner un modèle.</mat-error
+          >
         </mat-form-field>
       </div>
       <mat-form-field>
         <mat-label>Immatriculation</mat-label>
         <input matInput autocomplete="off" formControlName="immat" />
         <mat-hint>Format : XX-XXX-XX</mat-hint>
-        <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner une plaque d'immatriculation.</mat-error>
+        <mat-error *ngIf="form.hasError('required', 'brand')"
+          >Veuillez renseigner une plaque d'immatriculation.</mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Choisissez une date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="buy_date" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner une date d'achat.</mat-error>
+        <mat-error *ngIf="form.hasError('required', 'brand')"
+          >Veuillez renseigner une date d'achat.</mat-error
+        >
       </mat-form-field>
       <div fxLayout fxLayoutGap="16px">
         <mat-form-field fxFlex="48">
           <mat-label>Color</mat-label>
           <mat-select formControlName="color">
-            <mat-option value="orange">Orange</mat-option>
-            <mat-option value="gris">Gris</mat-option>
-            <mat-option value="rouge">Rouge</mat-option>
-            <mat-option value="blanc">Blanc</mat-option>
-            <mat-option value="jaune racing">Jaune racing</mat-option>
+            <mat-option *ngFor="let color of colors$ | async" [value]="color.label">{{
+              color.label | titlecase
+            }}</mat-option>
           </mat-select>
-          <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner une couleur.</mat-error>
+          <mat-error *ngIf="form.hasError('required', 'brand')"
+            >Veuillez renseigner une couleur.</mat-error
+          >
         </mat-form-field>
         <mat-form-field fxFlex="48">
           <mat-label>Etat</mat-label>
@@ -65,7 +75,9 @@
             <mat-option value="usée">Usée</mat-option>
             <mat-option value="légères rayures">Légères rayures</mat-option>
           </mat-select>
-          <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner l'état.</mat-error>
+          <mat-error *ngIf="form.hasError('required', 'brand')"
+            >Veuillez renseigner l'état.</mat-error
+          >
         </mat-form-field>
       </div>
       <div fxLayout fxLayoutGap="16px">
@@ -78,7 +90,9 @@
             formControlName="price"
           />
           <mat-icon matSuffix>euro</mat-icon>
-          <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner un prix.</mat-error>
+          <mat-error *ngIf="form.hasError('required', 'brand')"
+            >Veuillez renseigner un prix.</mat-error
+          >
         </mat-form-field>
         <mat-form-field fxFlex="48">
           <mat-label>Nombre de Km</mat-label>
@@ -89,13 +103,15 @@
             autocomplete="off"
             formControlName="miles"
           />
-          <mat-error *ngIf="form.hasError('required', 'brand')">Veuillez renseigner un nombre de km.</mat-error>
+          <mat-error *ngIf="form.hasError('required', 'brand')"
+            >Veuillez renseigner un nombre de km.</mat-error
+          >
         </mat-form-field>
       </div>
     </div>
     <div class="action" fxLayout fxLayoutAlign="center center">
       <button class="bold" color="primary" mat-flat-button>
-        {{ !!car?.id ? 'Update' : 'Create'  }}
+        {{ !!car?.id ? "Update" : "Create" }}
       </button>
     </div>
   </form>

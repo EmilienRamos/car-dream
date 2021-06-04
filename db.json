@@ -6,7 +6,7 @@
       "brand": "Nissan",
       "immat": "WW-985-YH",
       "buy_date": "2021-02-21T22:00:00.000Z",
-      "color": "Orange",
+      "color": "orange",
       "state": "neuf",
       "price": 280000,
       "miles": 10000,
@@ -84,17 +84,6 @@
         "https://images.unsplash.com/photo-1611656667636-6c4b9f4a08e0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1887&q=80",
         "https://images.unsplash.com/photo-1611838608826-4c32a6160d90?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
       ]
-    },
-    {
-      "id": "45792327-6cb9-4792-ae9d-f5ff1cb29042",
-      "name": "One77",
-      "brand": "Aston Martin",
-      "immat": "DR-965-VC",
-      "buy_date": "2010-06-30T22:00:00.000Z",
-      "state": "usée",
-      "color": "gris",
-      "price": 120666,
-      "miles": 20000
     }
   ]
 }
