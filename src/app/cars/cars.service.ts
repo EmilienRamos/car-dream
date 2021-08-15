@@ -14,7 +14,7 @@ export class CarsService {
   private readonly carAddedSubject$ = new Subject<Car>();
   private readonly carUpdatedSubject$ = new Subject<Car>();
   private readonly carDeletedSubject$ = new Subject<Car>();
-  private readonly createdCars$ = new BehaviorSubject(Number(this.storages.get('numbercarCreated')) || 0);
+  private readonly createdCars$ = new BehaviorSubject<number>(Number(this.storages.get('numbercarCreated')) || 0);
 
   get carAdded(): Observable<Car> {
     return this.carAddedSubject$.asObservable();
@@ -56,9 +56,9 @@ export class CarsService {
     return this.http.post<Car>(`${environment.api}/cars`, { ...car }).pipe(
       tap((carAdded) => {
         this.carAddedSubject$.next(carAdded);
-        const number = this.createdCars$.getValue();
-        this.createdCars$.next(number + 1);
-        this.storages.set('numbercarCreated', (number + 1).toString());
+        const number = this.createdCars$.getValue() + 1;
+        this.createdCars$.next(number);
+        this.storages.set('numbercarCreated', number.toString());
       })
     );
   }
@@ -73,9 +73,11 @@ export class CarsService {
     return this.http.delete(`${environment.api}/cars/${id}`).pipe(
       tap(() => {
         this.carDeletedSubject$.next();
-        const number = this.createdCars$.getValue() - 1;
+        const createdCars = this.createdCars$.getValue();
+        const number = createdCars > 0 ? (createdCars - 1) : 0;
+
         this.createdCars$.next(number);
-        this.storages.set('numbercarCreated', (number).toString());
+        this.storages.set('numbercarCreated', number.toString());
       })
     );
   }
