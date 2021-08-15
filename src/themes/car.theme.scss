@@ -60,12 +60,10 @@
   }
 
   eap-cars-filters {
-    mat-expansion-panel {
-      &.mat-expansion-panel {
-        background-color: mat-color($background, background);
-      }
+    .filter-section {
+      background-color: mat-color($background, background);
 
-      @if($is-dark) {
+      @if ($is-dark) {
         border-bottom-color: mat-color($background, card);
       } @else {
         border-bottom-color: mat-color($background, status-bar);

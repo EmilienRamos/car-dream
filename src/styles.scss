@@ -172,3 +172,9 @@ a {
 .light-button {
   background-color: mat-color($primary, 50);
 }
+
+.mat-form-field {
+  .mat-form-field-infix {
+    width: 100%;
+  }
+}

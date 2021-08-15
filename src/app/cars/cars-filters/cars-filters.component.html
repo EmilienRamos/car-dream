@@ -1,15 +1,32 @@
-<mat-accordion [multi]="true" displayMode="flat">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>filter_alt</mat-icon>
-        Filtres généraux
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel>
+<div class="container">
+  <section class="filter-section" fxLayout="column" fxLayoutAlign="center flex-start">
+    <h3 class="title" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
+      <mat-icon>attach_money</mat-icon>
+      <span>Prix</span>
+    </h3>
+    <div fxLayout fxLayoutGap="8px">
+      <mat-form-field fxFlex>
+        <mat-label>De</mat-label>
+        <input matInput placeholder="Ex: 1500"/>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>À</mat-label>
+        <input matInput placeholder="Ex: 11050"/>
+      </mat-form-field>
+    </div>
+  </section>
+  <section class="filter-section" fxLayout="column" fxLayoutAlign="center flex-start ">
+    <h3 class="title" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
+      <mat-icon>build</mat-icon>
+      <span>État du véhicule</span>
+    </h3>
+    <mat-chip-list fxLayout fxLayoutAlign="flex-start center">
+      <mat-chip>Usée</mat-chip>
+      <mat-chip>Neuf</mat-chip>
+    </mat-chip-list>
+  </section>
+</div>
+  <!-- <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon>attach_money</mat-icon>
@@ -26,7 +43,10 @@
         État du véhicule
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
+    <mat-chip-list fxLayout fxLayoutAlign="center flex-start">
+      <mat-chip>Usée</mat-chip>
+      <mat-chip>Neuf</mat-chip>
+    </mat-chip-list>
   </mat-expansion-panel>
 
   <mat-expansion-panel>
@@ -37,8 +57,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p>This is the primary content of the panel.</p>
-  </mat-expansion-panel>
-</mat-accordion>
+  </mat-expansion-panel> -->
 <footer>
   <p fxLayout fxLayoutAlign="flex-start center" fxLayoutGap="4px">
     <span class="bold">123</span>
