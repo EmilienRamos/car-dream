@@ -1,0 +1,69 @@
+@import "~@angular/material/theming";
+
+@mixin cars-filters-theme($theme) {
+  $color: mat-get-color-config($theme);
+  $typography: mat-get-typography-config($theme);
+
+  @if $color != null {
+    @include cars-filters-color($color);
+  }
+  @if $typography != null {
+    @include cars-filters-typography($typography);
+  }
+}
+
+@mixin cars-filters-color($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+  $warn: map-get($config, warn);
+  $foreground: map-get($config, foreground);
+  $background: map-get($config, background);
+  $is-dark: map-get($config, is-dark);
+
+  eap-cars-filters {
+    .filter-section {
+      background-color: mat-color($background, background);
+
+      @if ($is-dark) {
+        border-bottom-color: mat-color($background, card);
+      } @else {
+        border-bottom-color: mat-color($background, status-bar);
+      }
+
+      .colors {
+        .color {
+          &.white {
+            background: whitesmoke;
+          }
+
+          &.orange {
+            background-color: orange;
+          }
+
+          &.red {
+            background-color: red;
+          }
+
+          &.gris {
+            background-color: grey;
+          }
+
+          input:checked + .checkmark {
+            border-color: mat-color($primary);
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+  @mixin cars-filters-typography($config-or-theme) {
+  $config: mat-get-typography-config($config-or-theme);
+
+  eap-cars-filters {
+
+  }
+}

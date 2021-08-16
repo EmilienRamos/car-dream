@@ -5,6 +5,7 @@
 @import "themes/core/palette";
 @import "themes/core/theming";
 @import "themes/car.theme";
+@import "themes/car-filters";
 @import "themes/car-details.theme";
 
 $ep-typography: mat-typography-config(
@@ -69,6 +70,9 @@ $ep-dark-theme: ep-dark-theme(
 @include cars-theme($ep-theme);
 @include cars-typography($ep-theme);
 
+@include cars-filters-theme($ep-theme);
+@include cars-filters-typography($ep-theme);
+
 @include cars-details-theme($ep-theme);
 @include cars-details-typography($ep-theme);
 
@@ -77,6 +81,9 @@ $ep-dark-theme: ep-dark-theme(
 
   @include cars-theme($ep-dark-theme);
   @include cars-typography($ep-dark-theme);
+
+  @include cars-filters-theme($ep-dark-theme);
+  @include cars-filters-typography($ep-dark-theme);
 
   @include cars-details-theme($ep-dark-theme);
   @include cars-details-typography($ep-dark-theme);

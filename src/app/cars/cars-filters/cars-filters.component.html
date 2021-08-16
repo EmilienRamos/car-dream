@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [formGroup]="form">
   <section class="filter-section" fxLayout="column" fxLayoutAlign="center flex-start">
     <h3 class="title" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
       <mat-icon>attach_money</mat-icon>
@@ -7,33 +7,65 @@
     <div fxLayout fxLayoutGap="8px">
       <mat-form-field fxFlex>
         <mat-label>De</mat-label>
-        <input matInput placeholder="Ex: 1500"/>
+        <input matInput type="number" placeholder="Ex: 1500" formControlName="priceFrom"/>
       </mat-form-field>
       <mat-form-field fxFlex>
         <mat-label>À</mat-label>
-        <input matInput placeholder="Ex: 11050"/>
+        <input matInput type="number" placeholder="Ex: 11050" formControlName="priceTo"/>
       </mat-form-field>
     </div>
   </section>
   <section class="filter-section" fxLayout="column" fxLayoutAlign="center flex-start ">
     <h3 class="title" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
       <mat-icon>build</mat-icon>
-      <span>État du véhicule</span>
+      <span>État</span>
     </h3>
-    <mat-chip-list fxLayout fxLayoutAlign="flex-start center">
-      <mat-chip>Usée</mat-chip>
-      <mat-chip>Neuf</mat-chip>
+    <mat-chip-list fxLayout fxLayoutAlign="flex-start center" multiple>
+      <mat-chip [selected]="state.value.includes('usée')" (click)="toggleState('usée')">Usée</mat-chip>
+      <mat-chip [selected]="state.value.includes('neuf')" (click)="toggleState('neuf')">Neuf</mat-chip>
     </mat-chip-list>
   </section>
+  <section class="filter-section" fxLayout="column" fxLayoutAlign="center flex-start ">
+    <h3 class="title" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
+      <mat-icon>local_gas_station</mat-icon>
+      <span>Kilomètres</span>
+    </h3>
+    <div fxLayout fxLayoutGap="8px">
+      <mat-form-field fxFlex>
+        <mat-label>De</mat-label>
+        <input matInput type="number" placeholder="Ex: 1500" formControlName="kilometerFrom"/>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>À</mat-label>
+        <input matInput type="number" placeholder="Ex: 11050" formControlName="kilometerTo"/>
+      </mat-form-field>
+    </div>
+  </section>
+  <section class="filter-section" fxLayout="column" fxLayoutAlign="center flex-start ">
+    <h3 class="title" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
+      <mat-icon>color_lens</mat-icon>
+      <span>Couleurs</span>
+    </h3>
+    <div class="colors" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
+      <label for="white" class="color white">
+        <input type="checkbox" id="white">
+        <span class="checkmark" (click)="toggleColor('white')"></span>
+      </label>
+      <label for="red" class="color red">
+        <input type="checkbox" id="red" (click)="toggleColor('red')">
+        <span class="checkmark"></span>
+      </label>
+      <label for="orange" class="color orange">
+        <input type="checkbox" id="orange">
+        <span class="checkmark" (click)="toggleColor('orange')"></span>
+      </label>
+      <label for="gris" class="color gris">
+        <input type="checkbox" id="gris">
+        <span class="checkmark" (click)="toggleColor('gris')"></span>
+      </label>
+    </div>
+  </section>
 </div>
-  <!-- <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>color_lens</mat-icon>
-        Couleurs
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-  </mat-expansion-panel> -->
 <footer>
   <p fxLayout fxLayoutAlign="flex-start center" fxLayoutGap="4px">
     <span class="bold">123</span>

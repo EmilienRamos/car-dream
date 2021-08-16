@@ -1,22 +1,65 @@
 
 :host {
   height: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
+}
+
+.container {
+  overflow: auto;
 }
 
 .filter-section {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   padding: 24px;
+
+  .mat-chip-list {
+    .mat-chip {
+      cursor: pointer;
+    }
+  }
+
+  .colors {
+    .color {
+      width: 25px;
+      height: 25px;
+      position: relative;
+      border-radius: 4px;
+
+      input {
+        position: absolute;
+        opacity: 0;
+        display: none;
+
+        & + .checkmark {
+          cursor: pointer;
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          border-radius: 4px;
+          border-style: solid;
+          border-width: 4px;
+        }
+
+        &:not(:checked) + .checkmark {
+          border-color: transparent;
+        }
+      }
+    }
+  }
 }
 
 footer {
-  position: absolute;
+  position: sticky;
   padding: 16px;
   bottom: 0;
   right: 0;
   left: 0;
+  margin-top: auto;
 
   .reset-button {
     min-width: 38px;
