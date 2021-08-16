@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CarComponent } from './cars/car/car.component';
 import { CarsFiltersComponent } from './cars/cars-filters/cars-filters.component';
 import { CarsToolbarComponent } from './cars/cars-toolbar/cars-toolbar.component';
 import { CarsComponent } from './cars/cars.component';
@@ -18,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     CarsComponent,
+    CarComponent,
     DetailsComponent,
     CarsToolbarComponent,
     CarsFiltersComponent,

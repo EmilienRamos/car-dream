@@ -68,7 +68,7 @@
     <span>Véhicules trouvés</span>
   </p>
   <div class="validations" fxLayout fxLayoutGap="16px">
-    <button mat-flat-button fxFlex color="primary" class="bold">Rechercher</button>
+    <button mat-flat-button fxFlex color="primary" class="bold" (click)="search()">Rechercher</button>
     <button mat-stroked-button class="reset-button" (click)="initForm()">
       <mat-icon color="primary">close</mat-icon>
     </button>

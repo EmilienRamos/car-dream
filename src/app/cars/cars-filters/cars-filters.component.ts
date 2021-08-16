@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'eap-cars-filters',
@@ -26,7 +27,9 @@ export class CarsFiltersComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.initForm();
   }
@@ -45,8 +48,14 @@ export class CarsFiltersComponent implements OnInit {
     });
   }
 
+  search(): void {
+    this.router.navigate(['.'], {
+      queryParams: this.form.value,
+      queryParamsHandling: 'merge'
+    });
+  }
+
   toggleColor(color: string): void {
-    console.log(color);
     const findedColorIndex = this.colors.controls.findIndex(({ value }) => value === color);
 
     if (findedColorIndex !== -1) {
@@ -57,7 +66,6 @@ export class CarsFiltersComponent implements OnInit {
   }
 
   toggleState(state: string): void {
-    console.log(state);
     const findedStateIndex = this.state.controls.findIndex(({ value }) => value === state);
 
     if (findedStateIndex !== -1) {
