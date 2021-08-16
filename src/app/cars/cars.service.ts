@@ -37,12 +37,29 @@ export class CarsService {
     private storages: StorageService
   ) { }
 
-  cars(searchInput?: string): Observable<Car[]> {
+  cars(searchInput?: string, filters?: any): Observable<Car[]> {
+    console.log(filters);
 
     let params = new HttpParams();
 
     if (searchInput) {
       params = params.set('name_like', searchInput);
+    }
+
+    if (filters.kilometerFrom) {
+      params = params.set('miles_gte', filters.kilometerFrom);
+    }
+
+    if (filters.kilometerTo) {
+      params = params.set('miles_lte', filters.kilometerTo);
+    }
+
+    if (filters.priceFrom) {
+      params = params.set('price_gte', filters.priceFrom);
+    }
+
+    if (filters.priceTo) {
+      params = params.set('price_lte', filters.priceTo);
     }
 
     return this.http.get<Car[]>(`${environment.api}/cars`, { params });

@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'eap-cars-filters',
   templateUrl: './cars-filters.component.html',
   styleUrls: ['./cars-filters.component.scss']
 })
-export class CarsFiltersComponent implements OnInit {
+export class CarsFiltersComponent implements OnDestroy {
 
   form: FormGroup;
+
+  filterChanged$ = new Subject<any>();
+  destroy$ = new Subject<boolean>();
 
   colorsList = [
     'white',
@@ -17,6 +21,8 @@ export class CarsFiltersComponent implements OnInit {
     'gris',
     'orange'
   ];
+
+  @Input() totalCarsFound: number;
 
   get colors(): FormArray {
     return this.form.get('colors') as FormArray;
@@ -28,13 +34,9 @@ export class CarsFiltersComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
     this.initForm();
-  }
-
-  ngOnInit(): void {
   }
 
   initForm(): void {
@@ -53,6 +55,7 @@ export class CarsFiltersComponent implements OnInit {
       queryParams: this.form.value,
       queryParamsHandling: 'merge'
     });
+    this.filterChanged$.next(this.form.value);
   }
 
   toggleColor(color: string): void {
@@ -73,6 +76,11 @@ export class CarsFiltersComponent implements OnInit {
     } else {
       this.state.push(new FormControl(state));
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
 }

@@ -2,7 +2,7 @@
   <eap-cars-toolbar></eap-cars-toolbar>
   <mat-drawer-container class="container">
     <mat-drawer #drawer class="sidenav" mode="side" opened>
-      <eap-cars-filters></eap-cars-filters>
+      <eap-cars-filters [totalCarsFound]="totalCarsFound"></eap-cars-filters>
     </mat-drawer>
 
     <div class="sidenav-content" fxFlex fxLayout="column">
@@ -20,7 +20,7 @@
           fxLayoutGap="16px"
         >
           <mat-chip
-            >Vous avez créer {{ createdCars$ | async }} véhicules</mat-chip
+            >Vous avez créer {{ createdCars$ | async }} véhicule(s)</mat-chip
           >
           <mat-chip *ngIf="oldestCar"
             >Plus ancien véhicule : {{ oldestCar.brand }} {{ oldestCar.name }} -
