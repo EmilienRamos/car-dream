@@ -33,6 +33,10 @@
 
       .colors {
         .color {
+          &.selected {
+            border-color: mat-color($primary);
+          }
+
           &.white {
             background: whitesmoke;
           }
@@ -47,10 +51,6 @@
 
           &.gris {
             background-color: grey;
-          }
-
-          input:checked + .checkmark {
-            border-color: mat-color($primary);
           }
         }
       }

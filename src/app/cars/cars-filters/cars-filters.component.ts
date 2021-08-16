@@ -10,6 +10,13 @@ export class CarsFiltersComponent implements OnInit {
 
   form: FormGroup;
 
+  colorsList = [
+    'white',
+    'red',
+    'gris',
+    'orange'
+  ];
+
   get colors(): FormArray {
     return this.form.get('colors') as FormArray;
   }
@@ -18,7 +25,16 @@ export class CarsFiltersComponent implements OnInit {
     return this.form.get('state') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder
+  ) {
+    this.initForm();
+  }
+
+  ngOnInit(): void {
+  }
+
+  initForm(): void {
     this.form = this.fb.group({
       priceFrom: [],
       priceTo: [],
@@ -29,10 +45,8 @@ export class CarsFiltersComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   toggleColor(color: string): void {
+    console.log(color);
     const findedColorIndex = this.colors.controls.findIndex(({ value }) => value === color);
 
     if (findedColorIndex !== -1) {

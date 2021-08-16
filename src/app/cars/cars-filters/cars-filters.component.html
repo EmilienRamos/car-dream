@@ -47,21 +47,17 @@
       <span>Couleurs</span>
     </h3>
     <div class="colors" fxLayout fxLayoutAlign="center flex-start" fxLayoutGap="8px">
-      <label for="white" class="color white">
-        <input type="checkbox" id="white">
-        <span class="checkmark" (click)="toggleColor('white')"></span>
-      </label>
-      <label for="red" class="color red">
-        <input type="checkbox" id="red" (click)="toggleColor('red')">
-        <span class="checkmark"></span>
-      </label>
-      <label for="orange" class="color orange">
-        <input type="checkbox" id="orange">
-        <span class="checkmark" (click)="toggleColor('orange')"></span>
-      </label>
-      <label for="gris" class="color gris">
-        <input type="checkbox" id="gris">
-        <span class="checkmark" (click)="toggleColor('gris')"></span>
+      <label
+        *ngFor="let color of colorsList"
+        [for]="color"
+        [ngClass]="{
+          'color': true,
+          'selected mat-elevation-z5': colors.value.includes(color)
+        }"
+        [class]="color"
+        (change)="toggleColor(color)"
+      >
+        <input type="checkbox" [id]="color">
       </label>
     </div>
   </section>
@@ -73,7 +69,7 @@
   </p>
   <div class="validations" fxLayout fxLayoutGap="16px">
     <button mat-flat-button fxFlex color="primary" class="bold">Rechercher</button>
-    <button mat-stroked-button class="reset-button">
+    <button mat-stroked-button class="reset-button" (click)="initForm()">
       <mat-icon color="primary">close</mat-icon>
     </button>
   </div>
